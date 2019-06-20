@@ -6,14 +6,21 @@
  */
 
 import React from 'react';
+// import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Card } from 'rebass';
 
+// NOTE Notefield has a hard coded height to keep it from changing size when the border appears around it when focused.
+const RebassTextfield = styled(Card)`
   outline: none;
-  border-radius: 4px;
+  border-radius: ${props => (props.borderRadius ? props.borderRadius : '6px')};
+  border: ${props => (props.border ? props.border : '1px solid #909090')};
+  box-sizing: border-box;
+  transition: all 0.25s linear;
+  margin: 0;
   font-family: inherit;
   padding: 15px;
-  height: 90px;
+  height: ${props => (props.height ? props.height : '90px')};
   min-height: 90px;
   overflow: hidden;
 
@@ -25,10 +32,10 @@ import { Card } from 'rebass';
     color: black;
   }
   :focus {
-    border: 1.5px solid #3a71ff;
-    color: black;
+    outline-offset: 0;
+    border: 1px solid #2e66ff;
     ::placeholder {
-      color: transparent;
+      opacity: 0;
     }
   }
 `;
@@ -55,5 +62,7 @@ class NoteField extends React.PureComponent {
     );
   }
 }
+
+NoteField.propTypes = {};
 
 export default NoteField;
