@@ -30,6 +30,10 @@ const RebassTextfield = styled(Card)`
   :hover {
     border: solid 1px black;
     color: black;
+    ::placeholder {
+      color: ${props => (props.color ? props.color : '#000000')};
+      opacity: 1;
+    }
   }
   :focus {
     outline-offset: 0;
